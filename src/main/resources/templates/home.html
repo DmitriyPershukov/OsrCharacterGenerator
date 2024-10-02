@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:th="http://www.thymeleaf.org">
+	 <head>
+	 	<title>Создание персонажа</title>
+	 </head>
+	
+	 <body>
+		 <h3>Создать персонажа для:</h3>
+		 <div th:each="system : ${supportedSystems}">
+			<a th:href="${system.url}" th:text="${system.name}"></a>
+	     </div>
+	 </body>
+</html>

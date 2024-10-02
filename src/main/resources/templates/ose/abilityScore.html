@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:th="http://www.thymeleaf.org">
+	 <head>
+	 	<title>Создание персонажа</title>
+	 </head>
+	
+	 <body>
+		<h1>Характеристики:</h1>
+		<p>Сила: <span th:text="${oseCharacter.strengthScore}"></span></p> 
+		<p>Интеллект: <span th:text="${oseCharacter.intelligenceScore}"></span></p>
+		<p>Мудрость: <span th:text="${oseCharacter.wisdomScore}"></span></p>
+		<p>Ловкость: <span th:text="${oseCharacter.dexterityScore}"></span></p>
+		<p>Телосложение: <span th:text="${oseCharacter.constitutionScore}"></span></p>
+		<p>Харизма: <span th:text="${oseCharacter.charismaScore}"></span></p>
+		<form action="" method="post">
+		    <button name="action" value="reroll">Перекинуть результат</button>
+		</form>
+		<form action="" method="post">
+		    <button name="action" value="proceed">Далее</button>
+		</form>
+	 </body>
+</html>
