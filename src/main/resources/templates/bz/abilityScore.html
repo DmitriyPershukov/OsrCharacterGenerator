@@ -3,20 +3,48 @@
 	 xmlns:th="http://www.thymeleaf.org">
 	 <head>
 	 	<title>Создание персонажа</title>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+				let originalValues = {};
+				
+				checkboxes.forEach((checkbox) => {
+					const label = document.getElementById(checkbox.id + "Value");
+					if (label) {
+						originalValues[checkbox.id] = label.innerHTML;
+					}
+				});
+				
+				checkboxes.forEach((checkbox) => {
+				    checkbox.addEventListener('change', function() {
+						const label = document.getElementById(this.id + "Value");
+				        if (this.checked) {
+							label.innerHTML = 14;
+				            checkboxes.forEach((otherCheckbox) => {
+				                if (otherCheckbox != this) {
+				                    otherCheckbox.checked = false;
+									const otherLabel = document.getElementById(otherCheckbox.id + "Value");
+									otherLabel.innerHTML = originalValues[otherCheckbox.id];
+				                }
+				            });
+				        }
+				    });
+				});
+			});
+		</script>
 	 </head>
 	
 	 <body>
-		<h1>Характеристики:</h1>
-		<p>Сила: <span th:text="${bzCharacter.strengthScore}"></span></p> 
-		<p>Интеллект: <span th:text="${bzCharacter.intelligenceScore}"></span></p>
-		<p>Мудрость: <span th:text="${bzCharacter.wisdomScore}"></span></p>
-		<p>Ловкость: <span th:text="${bzCharacter.dexterityScore}"></span></p>
-		<p>Телосложение: <span th:text="${bzCharacter.constitutionScore}"></span></p>
-		<p>Харизма: <span th:text="${bzCharacter.charismaScore}"></span></p>
+			
 		<form action="" method="post">
+			<h1>Характеристики:</h1>
+			<div th:each="score : ${bzCharacter.getAbilityScores}">
+				<label th:for="${score.key}" th:text="${score.key} + ': '"></label>
+				<label th:for="${score.key}" th:id="${score.key} + 'Value'" th:text="${score.value}"></label>
+				<input type="checkbox" th:id="${score.key}" th:name="${score.key}">
+	  		</div>
 		    <button name="action" value="reroll">Перекинуть результат</button>
-		</form>
-		<form action="" method="post">
+			<br>
 		    <button name="action" value="proceed">Далее</button>
 		</form>
 	 </body>

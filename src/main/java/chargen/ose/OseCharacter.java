@@ -9,88 +9,88 @@ import lombok.Data;
 public class OseCharacter extends Character{
 	
 	private int getMeleeModifier() {
-		return mapScoreToModifier(strengthScore);
+		return mapScoreToModifier(getAbilityScore("strength"));
 	}
 	
 	private int getOpenDoorsChance() {
-		if (strengthScore <= 8) {
+		if (getAbilityScore("strength") <= 8) {
 			return 1;
 		}
-		if (strengthScore <= 12) {
+		if (getAbilityScore("strength") <= 12) {
 			return 2;
 		}
-		if (strengthScore <= 15) {
+		if (getAbilityScore("strength") <= 15) {
 			return 3;
 		}
-		if (strengthScore <= 17) {
+		if (getAbilityScore("strength") <= 17) {
 			return 4;
 		}
 		return 5;
 	}
 	
 	public int getAdditionalSpokenLanguagesNumber() {
-		if (intelligenceScore <= 12) {
+		if (getAbilityScore("intelligence") <= 12) {
 			return 0;
 		}
-		if (intelligenceScore <= 15) {
+		if (getAbilityScore("intelligence") <= 15) {
 			return 1;
 		}
-		if (intelligenceScore <= 17) {
+		if (getAbilityScore("intelligence") <= 17) {
 			return 2;
 		}
 		return 3;
 	}
 	
 	public LiteracyLevel getLiteracy() {
-		if (intelligenceScore <= 5) {
+		if (getAbilityScore("intelligence") <= 5) {
 			return LiteracyLevel.Illiterate;
 		}
-		if (intelligenceScore <= 8) {
+		if (getAbilityScore("intelligence") <= 8) {
 			return LiteracyLevel.Basic;
 		}
 		return LiteracyLevel.Literate;
 	}
 	
 	private int getMagicSaveModifier() {
-		return mapScoreToModifier(wisdomScore);
+		return mapScoreToModifier(getAbilityScore("wisdom"));
 	}
 	
 	private int getArmorClassModifier() {
-		return mapScoreToModifier(dexterityScore);
+		return mapScoreToModifier(getAbilityScore("dexterity"));
 	}
 	
 	private int getMissileModifier() {
-		return mapScoreToModifier(dexterityScore);
+		return mapScoreToModifier(getAbilityScore("dexterity"));
 	}
 	
 	private int getInitiativeModifier() {
-		if (dexterityScore == 3) {
+		if (getAbilityScore("dexterity") == 3) {
 			return -2;
 		}
-		if (dexterityScore <= 8) {
+		if (getAbilityScore("dexterity") <= 8) {
 			return -1;
 		}
-		if (dexterityScore <= 12) {
+		if (getAbilityScore("dexterity") <= 12) {
 			return 0;
 		}
-		if (dexterityScore <= 17) {
+		if (getAbilityScore("dexterity") <= 17) {
 			return 1;
 		}
 		return 2;
 	}
 	
 	private int getHitPointsModifier() {
-		return mapScoreToModifier(constitutionScore);
+		return mapScoreToModifier(getAbilityScore("constitution"));
 	}
 	
 	public int getNpcReactionModifier() {
-		if (intelligenceScore <= 12) {
+		if (getAbilityScore("intelligence") <= 12) {
 			return 0;
 		}
-		if (intelligenceScore <= 15) {
+		if (getAbilityScore("intelligence") <= 15) {
 			return 1;
 		}
-		if (intelligenceScore <= 17) {
+		if (getAbilityScore("intelligence") <= 17) {
 			return 2;
 		}
 		return 3;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:th="http://www.thymeleaf.org">
+	 <head>
+	 	<title>Создание персонажа</title>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const checkboxes = document.querySelectorAll('input[type="checkbox"][name="scoreIncrease"]');
+				checkboxes.forEach((checkbox) => {
+				    checkbox.addEventListener('change', function() {
+						const label = document.querySelector(`label[for="${this.id}"]`);
+				        if (this.checked) {
+							label.innerHTML = 14;
+				            checkboxes.forEach((otherCheckbox) => {
+				                if (otherCheckbox !== this) {
+									const label = document.querySelector(`label[for="${this.id}"]`);
+				                    otherCheckbox.checked = false;
+				                }
+				            });
+				        }
+				    });
+				});
+			});
+		</script>
+	 </head>
+	
+	 <body>
+			
+		<form action="" method="post">
+			<h1>Характеристики:</h1>
+			<p>
+				<label for="strengthIncrease" th:text="'Сила: ' + ${bzCharacter.strengthScore}"></label>
+				<input type="checkbox" id="strengthIncrease" name="strengthIncrease">
+			</p>
+			<p>Интеллект: <span th:text="${bzCharacter.intelligenceScore}"></span>
+				<input type="checkbox" name="intelligenceIncrease">
+			</p>
+			<p>Мудрость: <span th:text="${bzCharacter.wisdomScore}"></span></p>
+			<p>Ловкость: <span th:text="${bzCharacter.dexterityScore}"></span></p>
+			<p>Телосложение: <span th:text="${bzCharacter.constitutionScore}"></span></p>
+			<p>Харизма: <span th:text="${bzCharacter.charismaScore}"></span></p>
+		    <button name="action" value="reroll">Перекинуть результат</button>
+			<br>
+		    <button name="action" value="proceed">Далее</button>
+		</form>
+	 </body>
+</html>

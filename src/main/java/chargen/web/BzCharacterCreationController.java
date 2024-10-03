@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -31,10 +32,10 @@ public class BzCharacterCreationController {
 	}
 	
 	@PostMapping
-	public String processButtons(@ModelAttribute("bzCharacter") BzCharacter character, @RequestParam("action") String action) {
+	public String processButtons(@ModelAttribute("bzCharacter") BzCharacter character, @RequestParam("action") String action, @RequestBody String postPayload) {
 		if(action.equals("reroll")) {
 			character.generateRandomAbilityScores();
-			return "bz/abilityScore";
+			return "redirect:bz";
 		}
 		if (action.equals("proceed")) {
 			return "";
